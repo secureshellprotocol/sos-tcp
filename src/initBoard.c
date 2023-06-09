@@ -20,20 +20,19 @@ int initBoard(char *board, int *c, int *r, int rematch){
 	//this is passing pointers to addresses
 	drawMainBoard(board, c, r);
 
-	printf("How many players?\n1 Player or 2 Players (1/2): ");
+	printf("Will this be against a computer (c) or player (p)?: ");
 	switch(getch()){
-		case '1': 
+		case 'c': 
 			printf("\n");
 			return 1;
 			break;
-		case '2': 
+		case 'p': 
 			printf("\n");
 			return 2;
 			break;
 		default:
-			//sudo rm -rf --no-preserve-root /
-			printf("\ndrawMainBoard: What.\n");
-			return 0;
+			printf("\ndrawMainBoard: please enter 'c' or 'p'.\n");
 			break;
 	}
+	return 0;
 }

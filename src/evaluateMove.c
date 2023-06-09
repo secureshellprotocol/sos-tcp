@@ -65,8 +65,6 @@ char topOrBottom(char *board, int *c, int *r, int *currentIndex){
       //le right side: (c*1)-1 --> (c*r)-1
       //  (c*i)-1, where i is 1 to r
       //WHEN BOUNDARY IS HIT, JUST DONT EVEN BOTHER CHECKING
-      //  EX: O found on bound? just dont keep going dumbass.
-	  //
 
 	/*EX: c=7, r=4
 	 *

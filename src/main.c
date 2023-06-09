@@ -6,16 +6,16 @@ int main(){
 	
 	printf("\nWelcome to James's game of SOS!\nTo start, please state the length and width of the board you would like!\n");
 	while(1){
-		//scanf("%d", &c);
-		//scanf("%d", &r);
 		printf("Enter Length: ");
 		c = getch() - '0';
 		printf("Enter Width: ");
 		r = getch() - '0';
-		if(c >= 3 && r >= 3){
+		
+		//ensures board is minimum 3x3, maximum 9x9.
+		if((c >= 3 && c <= 9) && (r >= 3 && r <= 9)){
 			break;
 		}
-		printf("SOS: Invalid Input, try again.\n");
+		printf("SOS: Invalid Input!\n");
 	}
 	printf("\n");
 	char board[(c * r)];
@@ -41,8 +41,7 @@ int main(){
 				break;
 			}
 			break;
-		default:
-			
+		default:	
 			break;
 	}
 	return 0;

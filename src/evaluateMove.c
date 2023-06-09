@@ -185,6 +185,7 @@ int checkDiag(char *board, int *c, int *r, int currentIndex){
 }
 
 /*
+ * checks a score from top left to bottom right
  * #
  *  #
  *   #
@@ -241,9 +242,10 @@ int checkDiagLtoR(char *board, int *c, int *r, int currentIndex){
 			return 0;
 			break;
 	}
-
+	return 0;
 }
 /*
+ * checks a score from top right to bottom left
  *    #
  *   #
  *  #
@@ -299,6 +301,7 @@ int checkDiagRtoL(char *board, int *c, int *r, int currentIndex){
 			return 0;
 			break;
 	}
+	return 0;
 }
 
 //Returns 1 if SOS is found horizontally.
@@ -350,6 +353,7 @@ int checkHoriz(char *board, int *c, int *r, int currentIndex){
 			return 0;
 			break;
 	}
+	return 0;
 }
 
 //Returns 1 if SOS is found horizontally.
@@ -401,4 +405,5 @@ int checkVert(char *board, int *c, int *r, int currentIndex){
 			return 0;
 			break;
 	}
+	return 0;
 }

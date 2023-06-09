@@ -14,8 +14,8 @@ struct Player {
 int onePlayerGame(char* board, int *c, int *r){
 	srand(time(NULL));
 	struct Player guvnors[] = { //felt british
-		0, 0, "Player 1",
-		0, 0, "Computer"
+		{0, 0, "Player 1"},
+		{0, 0, "Computer"}
 	};
 	
 	int turn = rand()%2;

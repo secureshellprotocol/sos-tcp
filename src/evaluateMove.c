@@ -65,8 +65,6 @@ char topOrBottom(char *board, int *c, int *r, int *currentIndex){
       //le right side: (c*1)-1 --> (c*r)-1
       //  (c*i)-1, where i is 1 to r
       //WHEN BOUNDARY IS HIT, JUST DONT EVEN BOTHER CHECKING
-      //  EX: O found on bound? just dont keep going dumbass.
-	  //
 
 	/*EX: c=7, r=4
 	 *
@@ -185,6 +183,7 @@ int checkDiag(char *board, int *c, int *r, int currentIndex){
 }
 
 /*
+ * checks a score from top left to bottom right
  * #
  *  #
  *   #
@@ -241,9 +240,10 @@ int checkDiagLtoR(char *board, int *c, int *r, int currentIndex){
 			return 0;
 			break;
 	}
-
+	return 0;
 }
 /*
+ * checks a score from top right to bottom left
  *    #
  *   #
  *  #
@@ -299,6 +299,7 @@ int checkDiagRtoL(char *board, int *c, int *r, int currentIndex){
 			return 0;
 			break;
 	}
+	return 0;
 }
 
 //Returns 1 if SOS is found horizontally.
@@ -350,6 +351,7 @@ int checkHoriz(char *board, int *c, int *r, int currentIndex){
 			return 0;
 			break;
 	}
+	return 0;
 }
 
 //Returns 1 if SOS is found horizontally.
@@ -401,4 +403,5 @@ int checkVert(char *board, int *c, int *r, int currentIndex){
 			return 0;
 			break;
 	}
+	return 0;
 }

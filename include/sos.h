@@ -1,0 +1,17 @@
+int initBoard(char *board, int *c, int *r, int rematch);
+void drawMainBoard(char *board, int *c, int *r);
+int onePlayerGame(char *board, int *c, int *r);
+int twoPlayerGame(char *board, int *c, int *r);
+int playerMove(char *board, int *c, int *r);
+int findIndexChar(char ltr, char num, int *c, int *r);
+int findIndexInt(int col, int row, int *c, int *r);
+char getch();
+int winCond(char *board, int *c, int *r);
+int didScore(char *board, int *c, int *r, int currentIndex);
+char topOrBottom(char *board, int *c, int *r, int *currentIndex);
+char leftOrRight(char *board, int *c, int *r, int *currentIndex);
+int checkHoriz(char *board, int *c, int *r, int currentIndex);
+int checkVert(char *board, int *c, int *r, int currentIndex);
+int checkDiagLtoR(char *board, int *c, int *r, int currentIndex);
+int checkDiagRtoL(char *board, int *c, int *r, int currentIndex);
+int compyMove(char *board, int *c, int *r);

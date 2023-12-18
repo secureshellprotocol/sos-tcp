@@ -2,7 +2,7 @@
 #
 #
 CC = gcc
-CFLAGS = -Wall -Wextra -Wpedantic
+CFLAGS = -g -Wall -Wextra -Wpedantic
 
 INCLUDES = -Iinclude
 LFLAGS = -Llib
@@ -10,10 +10,11 @@ LFLAGS = -Llib
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
+INC_DIR = include
 
 SRC := $(wildcard $(SRC_DIR)/*.c)
 OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-BINARY = sos_gaming
+BINARY = sos
 
 $(BIN_DIR)/$(BINARY): $(OBJ) | $(BIN_DIR)
 	@$(CC) $(OBJ) $(LFLAGS) -o $@

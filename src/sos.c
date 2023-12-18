@@ -25,9 +25,9 @@ typedef struct board_t{
 	//		GAMING!!!!!!
 
 	//	To be Precomputed.
-	int bitsPerRow;
-	int bytesPerRow;
-	int trim;
+	unsigned int bitsPerRow;
+	unsigned int bytesPerRow;
+	unsigned int trim;
 	
 	unsigned int row_c;	//number of rows
 	unsigned int col_c; //number of cols
@@ -93,7 +93,7 @@ unsigned int getIndex(board *b, unsigned int c, unsigned int r) {
 
 void printBoardState(board *b){
 
-	for(int i = 0; i < b->gridsize; i++){ //iterate every byte
+	for(unsigned int i = 0; i < b->gridsize; i++){ //iterate every byte
 		if(i % b->bytesPerRow == 0){
 			printf("%c",'\n');
 		}
@@ -142,7 +142,7 @@ void printBoardState(board *b){
 		//	we add a precondition to newline on byte i % bytesPerRow
 		//	win
 
-		for (int j = 0; j < (8 - b->trim) ; j++) { //iterate every bit up to trim
+		for (unsigned int j = 0; j < (8 - b->trim) ; j++) { //iterate every bit up to trim
 			printf("%d", !!((b->grid[i] << j) & 0x80));
 		}
 	} 

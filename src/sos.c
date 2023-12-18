@@ -7,6 +7,17 @@
 
 #define BITS_PER_SQUARE 2
 
+
+// https://www.chiefdelphi.com/t/extracting-individual-bits-in-c/48028
+//get a bit from a variable
+#define GETBIT(var, bit)	(((var) >> (bit)) & 1)
+
+//set a bit to 1
+#define SETBIT(var, bit)	var |= (1 << (bit))
+
+//set a bit to 0
+#define CLRBIT(var, bit)	var &= (~(1 << (bit)))
+
 //	todo: implement a garbage collector to take note of the board
 //	and deallocate when done
 
@@ -24,7 +35,6 @@ typedef struct board_t{
 	//		if its false, its not
 	//		GAMING!!!!!!
 
-	//	To be Precomputed.
 	unsigned int bitsPerRow;
 	unsigned int bytesPerRow;
 	unsigned int trim;
@@ -34,10 +44,6 @@ typedef struct board_t{
 	
 	unsigned int gridsize; //number of total squares
 	
-	//We're building a grid of chars, which have the smallest decade of 8 bits. 
-	//	each "square" takes up BITS_PER_SQUARE bits, so we allocate BITS_PER_SQUARE * row_c * (col_c+1) bits
-	//	times (1 byte / 8 bits) to get what we want. the plus 1 ensures we never
-	//	end up with a deficiency.
 	char * grid;
 
 } board;
@@ -92,12 +98,12 @@ unsigned int getIndex(board *b, unsigned int c, unsigned int r) {
 }
 
 void printBoardState(board *b){
+	printf("%c",'\t');
+	for(char i = 0; i < b->col_c; i++){
+		printf("%c ", 'A'+i);
+	}
 
 	for(unsigned int i = 0; i < b->gridsize; i++){ //iterate every byte
-		if(i % b->bytesPerRow == 0){
-			printf("%c",'\n');
-		}
-
 		//keep in mind, for every i, we're observing a byte
 		//so that means we have to do a little trolling and go bit by bit
 		//for ease, we chop off excess on every row
@@ -141,12 +147,51 @@ void printBoardState(board *b){
 		//	trim 2 bits from every byte
 		//	we add a precondition to newline on byte i % bytesPerRow
 		//	win
+		//
+		//
+		//	ok cool we're only looking at a single bit though
+		//	we want every BITS_PER_SQUARE
+		//
+		//	ok i know we were trying to generalize this but having 3 bits per square genuinely fucks
+		//	this up. we wont worry about it for now
+		//
+		//	just divide the 8-trim term by BITS_PER_SQUARE
 
-		for (unsigned int j = 0; j < (8 - b->trim) ; j++) { //iterate every bit up to trim
-			printf("%d", !!((b->grid[i] << j) & 0x80));
+		if(i % b->bytesPerRow == 0){
+			printf("%c%d\t",'\n', i/b->bytesPerRow);
 		}
-	} 
 
-	printf("\n");
+		for (unsigned int j = 0; j < (8 - b->trim) ; j+=BITS_PER_SQUARE) { //iterate every bit up to trim
+			unsigned int lb = GETBIT(b->grid[i], j);
+			unsigned int rb = GETBIT(b->grid[i], j+1);
+			switch (lb){
+				case 0:
+					goto l_false;	
+				
+				case 1:
+					goto l_true;
+			}
+			l_false:
+			switch (rb){
+				case 0: //00
+					printf("- ");
+					continue;
+				case 1: //01
+					printf("S ");
+					continue;
+
+			}
+			l_true:
+			switch (rb){
+				case 0: //10
+					printf("O ");
+					continue;
+				case 1: //11
+					continue;
+
+			}	
+		}
+	}
+	printf("%c",'\n'); 
 	return;
 }

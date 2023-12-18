@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <time.h>
 #include "../include/sos.h"
 
 //collect players + names
@@ -9,15 +11,24 @@
 //
 
 int main(){
-	board *main_board = constructBoard(3, 3);
+
+	unsigned int rows = 0;
+	printf("Num of rows: ");
+	scanf("%ud", &rows);
+	unsigned int cols = 0;
+	printf("Num of cols: ");
+	scanf("%ud", &cols);
+
+	clock_t start, end;
+	double cpu_time;
+	start = clock();
+	board *main_board = constructBoard(cols,rows);
 	printBoardState(main_board);
 
 	deallocBoard(main_board);
-
-	main_board = constructBoard(6, 6);
-	printBoardState(main_board);
-
-	deallocBoard(main_board);
+	end = clock();
+	cpu_time = ((double) (end-start))/CLOCKS_PER_SEC;
+	printf("\nTime to generate board in seconds: %f\n", cpu_time);
 
 	return 0;
 }

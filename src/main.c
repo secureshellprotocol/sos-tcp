@@ -13,5 +13,11 @@ int main(){
 	printBoardState(main_board);
 
 	deallocBoard(main_board);
+
+	main_board = constructBoard(6, 6);
+	printBoardState(main_board);
+
+	deallocBoard(main_board);
+
 	return 0;
 }

@@ -30,4 +30,4 @@ $(OBJ_DIR):
 
 .PHONY: clean
 clean:
-	rm -f obj/*.o ../bin/sos_gaming
+	rm -f obj/*.o ../bin/$(BINARY)

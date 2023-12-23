@@ -3,23 +3,26 @@
 
 #include <stdint.h>
 
-//	Find a better way later
-//
-//	Square data type
-//	One bit is defined for every "square", and one bit is a "match"
-//		"match" is a checksum basically -- if its NOT equal to match, that means
-//		something went wrong.
-
 typedef struct board_t 
 	board;
-
-//	todo: implement a garbage collector to take note of the board
-//	and deallocate when done
 
 //	Constructs an SOS board with row size r and col size c
 board *constructBoard(unsigned int r, unsigned int c);
 
+//	deallocates the board, and all associated data
 void deallocBoard(board *b);
+
+//	Makes a move on a certain index
+//	user should specify the index, and then this fcn jumps into
+//	an internal routine asking for which piece to place
+//	
+//	normally, the board includes a predefined set of pieces (in our case,
+//		S, O, -, and invalid), and all the player should be doing is stating
+//		a row num and col char
+int play(board *b, char c, unsigned int r);
+
+
+//	Internal functions -- usually you shouldnt touch these
 
 //	gets the numerical index for accessing the array
 //	convention: (c,r)
@@ -31,7 +34,9 @@ void deallocBoard(board *b);
 //			\/				--	...		--> 
 //		(0,row_l - 1)
 //		(r-axis)
-unsigned int getIndex(board *b, unsigned int c, unsigned int r);
+unsigned int __getIndex(board *b, char c, unsigned int r);
 
-void printBoardState(board *b);
+int __makeMove(board *b, char opt);
+
+void __printBoardState(board *b);
 #endif //_BOARD_H
